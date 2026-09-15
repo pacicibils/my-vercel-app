@@ -1,0 +1,20 @@
+{
+  "name": "wordpress-serverless-vercel",
+  "version": "1.0.0",
+  "description": "WordPress Serverless deployment on Vercel - Free Tier Compatible",
+  "main": "vercel/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Build completed'",
+    "deploy": "vercel deploy --prod",
+    "start": "node vercel/index.js"
+  },
+  "dependencies": {
+    "@vercel/node": "^2.3.18",
+    "@vercel/static-config": "^0.2.4"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

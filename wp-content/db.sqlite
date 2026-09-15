@@ -1,0 +1,14 @@
+-- Base de datos SQLite inicial para WordPress en Vercel Free Tier
+
+CREATE TABLE IF NOT EXISTS wp_users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_login VARCHAR(60) NOT NULL DEFAULT 'admin',
+    display_name VARCHAR(250),
+    user_email VARCHAR(100),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insertar usuario admin por defecto
+INSERT OR REPLACE INTO wp_users (user_login, display_name, user_email) 
+VALUES ('admin', 'Admin User', 'admin@example.com')
+WHERE NOT EXISTS (SELECT 1 FROM wp_users LIMIT 1);

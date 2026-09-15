@@ -1,0 +1,47 @@
+{
+  "buildCommand": "",
+  "installCommand": "npm install",
+  "outputDirectory": ".",
+  "functions": {
+    "./api/*": {
+      "maxDuration": 10
+    },
+    "./wp-admin/setup-config.php": {
+      "maxDuration": 10
+    }
+  },
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "/wp-admin/setup-config.php?new=1",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "header",
+          "name": "Host",
+          "value": "{request.headers.host}"
+        }
+      ]
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "VERCEL_ENV": "production",
+    "WP_URL": "{request.url}"
+  },
+  "publicOutputDirectory": ""
+}
