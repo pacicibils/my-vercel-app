@@ -1,110 +1,144 @@
-# WordPress Serverless en Vercel (Plan Gratuito)
+# WordPress Serverless en Vercel (Free Tier)
 
-Este proyecto configura WordPress como una función serverless en Vercel, utilizando el plan gratuito.
+**GitHub:** [pacicibils/my-vercel-app](https://github.com/pacicibils/my-vercel-app)  
+**Estado:** ✅ Listo para desplegar en Vercel Free Tier
 
-## 🚀 Despliegue Rápido
+---
 
-### Opción 1: Deploy desde GitHub (Recomendado)
+## 🚀 Despliegue Rápido en Vercel
 
-1. **Sube este código a tu repositorio de GitHub**
-2. Ve a [Vercel.com](https://vercel.com/dashboard)
-3. Haz click en "Add New..." → "Project"
-4. Importa tu repositorio de GitHub (`pacicibils/my-vercel-app`)
-5. Configura las variables de entorno:
-   - `WP_URL`: `https://tudominio.vercel.app` (lo generará Vercel automáticamente)
-   - `ADMIN_EMAIL`: Tu correo electrónico
-6. Click en "Deploy"
+### Opción 1: Deploy desde Dashboard (Recomendado)
 
-### Opción 2: Deploy Manual desde tu PC
+1. **Ve al dashboard de Vercel:**
+   - [vercel.com/dashboard](https://vercel.com/dashboard)
+   
+2. **Importa el repositorio:**
+   - Click en "Add New..." → "Project"
+   - Busca: `pacicibils/my-vercel-app`
+   - Click en "Deploy with Vercel"
+
+3. **Configura variables de entorno** (antes del deploy):
+   
+   Settings → Environment Variables:
+
+| Variable | Valor | Descripción |
+|----------|-------|-------------|
+| `WP_URL` | Auto-detected | URL que generará Vercel automáticamente |
+| `ADMIN_EMAIL` | admin@example.com | Correo para login admin de WordPress |
+
+4. **Click en "Deploy"** - Vercel desplejará tu proyecto automáticamente! ✅
+
+### Opción 2: Deploy desde CLI
 
 ```bash
 cd my-vercel-app
 npm install
-npm run build
 vercel deploy --prod
 ```
 
-## ⚙️ Configuración de Variables de Entorno
+---
 
-En Vercel Dashboard → Settings → Environment Variables:
+## 📋 Variables de Entorno Necesarias
 
-| Variable | Valor |
-|----------|-------|
-| `WP_URL` | La URL que generará Vercel (ej: `https://tu-proyecto.vercel.app`) |
-| `ADMIN_EMAIL` | Tu correo para WordPress admin |
-| `WORDPRESS_DB_HOST` | (opcional) Para configuración personalizada |
+Antes de desplegar, configura estas variables en Vercel Dashboard:
 
-## 📋 Estructura del Proyecto
+```env
+# Mínimas (obligatorias)
+WP_URL=https://tudominio.vercel.app      # Auto-detected por Vercel
+ADMIN_EMAIL=admin@example.com            # Correo para login admin
+
+# Opcionales
+WORDPRESS_DB_HOST=/var/task/wp-content/db.sqlite    # SQLite local
+VERCEL_ENV=production                                # Modo producción
+```
+
+---
+
+## 🎯 Características del Plan Gratuito de Vercel
+
+✅ **Totalmente compatible con el plan gratuito:**
+- 100 GB ancho de banda/mes
+- 100 funciones serverless/hora
+- Funciones hasta 1s (suficiente para WordPress simple)
+- Domains personalizados gratis
+
+---
+
+## 📝 Estructura del Proyecto
 
 ```
 my-vercel-app/
-├── package.json          # Dependencias del proyecto
-├── vercel.json           # Configuración de Vercel
-├── .gitignore            # Archivos ignorados por Git
-├── README.md             # Documentación
+├── package.json              # Dependencias npm
+├── vercel.json               # Configuración principal de Vercel
+├── .gitignore                # Archivos ignorados por Git
+├── .env.example              # Plantilla de variables de entorno
+├── README.md                 # Esta documentación
+├── DEPLOYMENT.md             # Guía completa de despliegue
 └── vercel/
-    └── index.js          # Función principal serverless
+    └── index.js              # Función principal serverless
 ```
 
-## 🔧 Qué hace este setup
+---
 
-1. **WordPress Serverless**: Ejecuta WordPress como una función serverless en Vercel
-2. **Sin servidor MySQL**: Utiliza SQLite o base de datos serverless
-3. **Totalmente gratis**: Compatible con el plan gratuito de Vercel
-4. **Auto-deploy desde GitHub**: Cada commit despliega automáticamente
+## 🔧 Pasos para Desplegar (Resumen)
 
-## 📝 Pasos para la primera vez
+### Paso 1: Configurar Variables en Vercel Dashboard
 
-1. **Primer despliegue**:
-   ```bash
-   cd my-vercel-app
-   npm install
-   vercel
-   ```
+Antes de desplegar, ve a Settings → Environment Variables y agrega:
 
-2. **Configurar WordPress** (se hará automáticamente al primer acceso):
-   - Ve a tu URL de Vercel
-   - Sigue el asistente de instalación de WordPress
+| Variable | Valor |
+|----------|-------|
+| `WP_URL` | Auto-detected (Vercel lo configura) |
+| `ADMIN_EMAIL` | admin@example.com |
 
-3. **Login**:
-   - Admin usuario: `admin` (por defecto)
-   - Correo: Configura en variables de entorno
+### Paso 2: Importar Repositorio en Vercel
 
-## 🎯 Plan Gratuito de Vercel
+1. Dashboard → Add New → Project
+2. Busca: `pacicibils/my-vercel-app`
+3. Click en "Deploy"
 
-✅ **Totalmente compatible con el plan gratuito**
-- 100 GB ancho de banda/mes
-- 100 funciones/hora
-- Funciones hasta 1s (recomendado para WordPress)
-- Domains personalizados gratis (con tu propio dominio)
+### Paso 3: Esperar el Deploy
 
-## 🛠️ Comandos Útiles
+Vercel automáticamente:
+- Detectará tu repositorio de GitHub ✅
+- Compilará tu proyecto ✅
+- Desplejará a producción ✅
 
-```bash
-# Verificar configuración
-vercel --list
+---
 
-# Desplegar al branch actual
-vercel deploy
+## 🎉 Post-Deploy
 
-# Desplejar en producción
-vercel deploy --prod
+Después del despliegue exitoso:
 
-# Ver logs
-vercel logs
-```
+1. **Accede a tu sitio:** `https://tu-proyecto.vercel.app`
+2. **Configura WordPress:** Sigue el asistente de instalación
+3. **Cuenta admin:** Usuario `admin`, correo configurado en variables
 
-## ⚠️ Consideraciones Importantes
+---
 
-- **WordPress serverless** es diferente a WordPress tradicional
-- Requiere configuración especial del tema y plugins
-- Algunos plugins no son compatibles con el ambiente serverless
-- La base de datos debe ser compatible con serverless (SQLite, NeonDB, etc.)
+## 🔗 Enlaces Útiles
 
-## 📚 Recursos Adicionales
+- [Dashboard Vercel](https://vercel.com/dashboard) - Panel principal
+- [Vercel Serverless Functions](https://vercel.com/docs/functions) - Documentación
+- [WordPress Template Oficial](https://vercel.com/templates/other/serverless-wordpress)
+- [Vercel Pricing](https://vercel.com/pricing) - Límites del plan gratuito
 
-- [Vercel Serverless Functions](https://vercel.com/docs/functions)
-- [WordPress en Vercel](https://vercel.com/templates/other/serverless-wordpress)
+---
+
+## 📊 Estado Actual
+
+- **GitHub:** ✅ Repositorio creado y configurado
+- **Estructura:** ✅ Lista para Vercel Serverless
+- **Variables:** ⚙️ Deben configurarse antes del deploy
+- **Estado:** 🚀 Listo para desplegar en Vercel Free Tier
+
+---
+
+## 💡 Consejos
+
+- Usa **NeonDB** o **Supabase** como base de datos externa (gratis)
+- Mantén las funciones serverless por debajo de 1s
+- Testea cada plugin antes de producción
 
 ---
 

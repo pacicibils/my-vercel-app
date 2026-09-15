@@ -5,12 +5,10 @@
   "main": "vercel/index.js",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'Build completed'",
-    "deploy": "vercel deploy --prod",
-    "start": "node vercel/index.js"
+    "build": "npm run build",
+    "deploy": "vercel deploy --prod"
   },
   "dependencies": {
-    "@vercel/node": "^2.3.18",
     "@vercel/static-config": "^0.2.4"
   },
   "devDependencies": {},

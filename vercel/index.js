@@ -11,7 +11,7 @@ const { vercel } = require('@vercel/node');
 const VERCEL_DIR = '/var/task/www'; // Ruta donde se instala WordPress en Vercel
 
 /**
- * Función principal de inicialización
+ * Función principal de inicialización para WordPress
  */
 async function initWordPress(request, response) {
   try {
@@ -78,7 +78,4 @@ module.exports = {
  * - WP_URL: Tu URL en Vercel
  * - ADMIN_EMAIL: Correo para la cuenta admin
  * - WORDPRESS_DB_HOST: Host de la base de datos (opcional)
- * - WORDPRESS_DB_NAME: Nombre de la base de datos
- * - WORDPRESS_DB_USER: Usuario de la base de datos
- * - WORDPRESS_DB_PASSWORD: Contraseña de la base de datos
  */

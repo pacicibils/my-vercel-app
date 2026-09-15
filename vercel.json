@@ -1,12 +1,9 @@
 {
   "buildCommand": "",
   "installCommand": "npm install",
-  "outputDirectory": ".",
+  "outputDirectory": ".vercel",
   "functions": {
     "./api/*": {
-      "maxDuration": 10
-    },
-    "./wp-admin/setup-config.php": {
       "maxDuration": 10
     }
   },
@@ -39,9 +36,10 @@
       ]
     }
   ],
-  "env": {
-    "VERCEL_ENV": "production",
-    "WP_URL": "{request.url}"
-  },
-  "publicOutputDirectory": ""
+  "env": {},
+  "publicOutputDirectory": "",
+  "github": {
+    "silent": true,
+    "deployBranch": "main"
+  }
 }
